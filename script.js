@@ -3,7 +3,7 @@ var parser = require("./modules/url-parser");
 var path = require("path");
 var fs = require("fs");
 var Q = require("q");
-var { TMP_FILE_DIRNAME } = require("./modules/constants");
+var constants = require("./modules/constants");
 
 module.exports = function (urlOrVidId) {
   var url = parser(urlOrVidId);
@@ -11,14 +11,14 @@ module.exports = function (urlOrVidId) {
   return {
     snapshot: function (time, filePath, format) {
       var snapShot = require("./modules/snapshot");
-      var video = youtubedl(url, format, { cwd: TMP_FILE_DIRNAME });
+      var video = youtubedl(url, format, { cwd: constants.TMP_FILE_DIRNAME });
       var snapshotFilePath = path.resolve(
-        TMP_FILE_DIRNAME,
+        constants.TMP_FILE_DIRNAME,
         "tmp",
         "snap-" + +new Date() + ".jpg"
       );
       var videoFilePath = path.resolve(
-        TMP_FILE_DIRNAME,
+        constants.TMP_FILE_DIRNAME,
         "tmp",
         "video-" + +new Date() + ".mp4"
       );
@@ -63,19 +63,19 @@ module.exports = function (urlOrVidId) {
       var sec = require("sec");
       var snapShot = require("./modules/snapshot");
       var crop = require("./modules/crop");
-      var video = youtubedl(url, format, { cwd: TMP_FILE_DIRNAME });
+      var video = youtubedl(url, format, { cwd: constants.TMP_FILE_DIRNAME });
       var tmpSnap = path.resolve(
-        TMP_FILE_DIRNAME,
+        constants.TMP_FILE_DIRNAME,
         "tmp",
         "snap-" + +new Date() + ".jpg"
       );
       var cropFilePath = path.resolve(
-        TMP_FILE_DIRNAME,
+        constants.TMP_FILE_DIRNAME,
         "tmp",
         "crop-" + +new Date() + ".mp4"
       );
       var videoFilePath = path.resolve(
-        TMP_FILE_DIRNAME,
+        constants.TMP_FILE_DIRNAME,
         "tmp",
         "video-" + +new Date() + ".mp4"
       );
@@ -136,7 +136,7 @@ module.exports = function (urlOrVidId) {
       var gif = require("./modules/gif.js");
       var deferred = Q.defer();
       var cropFilePath = path.resolve(
-        TMP_FILE_DIRNAME,
+        constants.TMP_FILE_DIRNAME,
         "tmp",
         "crop-" + +new Date() + ".mp4"
       );
@@ -164,9 +164,9 @@ module.exports = function (urlOrVidId) {
       return deferred.promise;
     },
     download: function (filePath, format) {
-      var video = youtubedl(url, format, { cwd: TMP_FILE_DIRNAME });
+      var video = youtubedl(url, format, { cwd: constants.TMP_FILE_DIRNAME });
       var videoFilePath = path.resolve(
-        TMP_FILE_DIRNAME,
+        constants.TMP_FILE_DIRNAME,
         "tmp",
         "video-" + +new Date() + ".mp4"
       );

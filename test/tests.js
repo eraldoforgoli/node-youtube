@@ -3,11 +3,11 @@ var youtube = Youtube("3I78ELjTzlQ");
 var assert = require("assert");
 var fs = require("fs");
 var path = require("path");
-var { TMP_FILE_DIRNAME } = require("../modules/constants");
+var constants = require("../modules/constants");
 
 describe("Testing main features (crop, snapshot, GIF, download)", function () {
   describe("Testing snapshots", function () {
-    var filePath = path.resolve(TMP_FILE_DIRNAME, "snap.png");
+    var filePath = path.resolve(constants.TMP_FILE_DIRNAME, "snap.png");
 
     beforeEach(function (done) {
       this.timeout(180000);
@@ -21,7 +21,7 @@ describe("Testing main features (crop, snapshot, GIF, download)", function () {
   });
 
   describe("Testing GIFs taking", function () {
-    var filePath = path.resolve(TMP_FILE_DIRNAME, "file.gif");
+    var filePath = path.resolve(constants.TMP_FILE_DIRNAME, "file.gif");
 
     beforeEach(function (done) {
       this.timeout(180000);
@@ -35,7 +35,7 @@ describe("Testing main features (crop, snapshot, GIF, download)", function () {
   });
 
   describe("Testing crop", function () {
-    var filePath = path.resolve(TMP_FILE_DIRNAME, "video.mp4");
+    var filePath = path.resolve(constants.TMP_FILE_DIRNAME, "video.mp4");
 
     beforeEach(function (done) {
       this.timeout(180000);
@@ -49,7 +49,7 @@ describe("Testing main features (crop, snapshot, GIF, download)", function () {
   });
 
   describe("Testing download", function () {
-    var filePath = path.resolve(TMP_FILE_DIRNAME, "video.mp4");
+    var filePath = path.resolve(constants.TMP_FILE_DIRNAME, "video.mp4");
 
     beforeEach(function (done) {
       this.timeout(180000);
