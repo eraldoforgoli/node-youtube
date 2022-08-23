@@ -14,12 +14,10 @@ module.exports = function (urlOrVidId) {
       var video = youtubedl(url, format, { cwd: constants.TMP_FILE_DIRNAME });
       var snapshotFilePath = path.resolve(
         constants.TMP_FILE_DIRNAME,
-        "tmp",
         "snap-" + +new Date() + ".jpg"
       );
       var videoFilePath = path.resolve(
         constants.TMP_FILE_DIRNAME,
-        "tmp",
         "video-" + +new Date() + ".mp4"
       );
       var ws = fs.createWriteStream(videoFilePath);
@@ -66,17 +64,14 @@ module.exports = function (urlOrVidId) {
       var video = youtubedl(url, format, { cwd: constants.TMP_FILE_DIRNAME });
       var tmpSnap = path.resolve(
         constants.TMP_FILE_DIRNAME,
-        "tmp",
         "snap-" + +new Date() + ".jpg"
       );
       var cropFilePath = path.resolve(
         constants.TMP_FILE_DIRNAME,
-        "tmp",
         "crop-" + +new Date() + ".mp4"
       );
       var videoFilePath = path.resolve(
         constants.TMP_FILE_DIRNAME,
-        "tmp",
         "video-" + +new Date() + ".mp4"
       );
       var ws = fs.createWriteStream(videoFilePath);
@@ -137,7 +132,6 @@ module.exports = function (urlOrVidId) {
       var deferred = Q.defer();
       var cropFilePath = path.resolve(
         constants.TMP_FILE_DIRNAME,
-        "tmp",
         "crop-" + +new Date() + ".mp4"
       );
       var duration = sec(endTime) - sec(startTime);
@@ -167,7 +161,6 @@ module.exports = function (urlOrVidId) {
       var video = youtubedl(url, format, { cwd: constants.TMP_FILE_DIRNAME });
       var videoFilePath = path.resolve(
         constants.TMP_FILE_DIRNAME,
-        "tmp",
         "video-" + +new Date() + ".mp4"
       );
       var ws = fs.createWriteStream(videoFilePath);
