@@ -13,14 +13,16 @@ module.exports = function (urlOrVidId) {
       var snapShot = require("./modules/snapshot");
       // var video = youtubedl(url, format, { cwd: constants.TMP_FILE_DIRNAME });
       var video = ytdl(url);
+      var videoFilePath = path.resolve(
+        constants.TMP_FILE_DIRNAME,
+        "video-" + +new Date() + ".mp4"
+      );
+      var output = path.resolve(constants.TMP_FILE_DIRNAME, videoFilePath);
+      video.pipe(fs.createWriteStream(output));
 
       var snapshotFilePath = path.resolve(
         constants.TMP_FILE_DIRNAME,
         "snap-" + +new Date() + ".jpg"
-      );
-      var videoFilePath = path.resolve(
-        constants.TMP_FILE_DIRNAME,
-        "video-" + +new Date() + ".mp4"
       );
       var ws = fs.createWriteStream(videoFilePath);
       var deferred = Q.defer();
@@ -65,6 +67,13 @@ module.exports = function (urlOrVidId) {
       var crop = require("./modules/crop");
       // var video = youtubedl(url, format, { cwd: constants.TMP_FILE_DIRNAME });
       var video = ytdl(url);
+      var videoFilePath = path.resolve(
+        constants.TMP_FILE_DIRNAME,
+        "video-" + +new Date() + ".mp4"
+      );
+      var output = path.resolve(constants.TMP_FILE_DIRNAME, videoFilePath);
+      video.pipe(fs.createWriteStream(output));
+
       var tmpSnap = path.resolve(
         constants.TMP_FILE_DIRNAME,
         "snap-" + +new Date() + ".jpg"
@@ -73,10 +82,7 @@ module.exports = function (urlOrVidId) {
         constants.TMP_FILE_DIRNAME,
         "crop-" + +new Date() + ".mp4"
       );
-      var videoFilePath = path.resolve(
-        constants.TMP_FILE_DIRNAME,
-        "video-" + +new Date() + ".mp4"
-      );
+
       var ws = fs.createWriteStream(videoFilePath);
       var deferred = Q.defer();
       var duration = sec(endTime) - sec(startTime);
@@ -167,6 +173,8 @@ module.exports = function (urlOrVidId) {
         constants.TMP_FILE_DIRNAME,
         "video-" + +new Date() + ".mp4"
       );
+      var output = path.resolve(constants.TMP_FILE_DIRNAME, videoFilePath);
+      video.pipe(fs.createWriteStream(output));
       var ws = fs.createWriteStream(videoFilePath);
       var move = require("./modules/move");
       var deferred = Q.defer();
