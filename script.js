@@ -1,4 +1,4 @@
-var youtubedl = require("youtube-dl");
+var ytdl = require("ytdl-core");
 var parser = require("./modules/url-parser");
 var path = require("path");
 var fs = require("fs");
@@ -11,7 +11,9 @@ module.exports = function (urlOrVidId) {
   return {
     snapshot: function (time, filePath, format) {
       var snapShot = require("./modules/snapshot");
-      var video = youtubedl(url, format, { cwd: constants.TMP_FILE_DIRNAME });
+      // var video = youtubedl(url, format, { cwd: constants.TMP_FILE_DIRNAME });
+      var video = ytdl(url);
+
       var snapshotFilePath = path.resolve(
         constants.TMP_FILE_DIRNAME,
         "snap-" + +new Date() + ".jpg"
@@ -61,7 +63,8 @@ module.exports = function (urlOrVidId) {
       var sec = require("sec");
       var snapShot = require("./modules/snapshot");
       var crop = require("./modules/crop");
-      var video = youtubedl(url, format, { cwd: constants.TMP_FILE_DIRNAME });
+      // var video = youtubedl(url, format, { cwd: constants.TMP_FILE_DIRNAME });
+      var video = ytdl(url);
       var tmpSnap = path.resolve(
         constants.TMP_FILE_DIRNAME,
         "snap-" + +new Date() + ".jpg"
@@ -158,7 +161,8 @@ module.exports = function (urlOrVidId) {
       return deferred.promise;
     },
     download: function (filePath, format) {
-      var video = youtubedl(url, format, { cwd: constants.TMP_FILE_DIRNAME });
+      // var video = youtubedl(url, format, { cwd: constants.TMP_FILE_DIRNAME });
+      var video = ytdl(url);
       var videoFilePath = path.resolve(
         constants.TMP_FILE_DIRNAME,
         "video-" + +new Date() + ".mp4"
